@@ -1,7 +1,6 @@
 import React from 'react'
 import dados from './data/dados_iniciais.json'
 import './App.css'
-import Menu from './components/Menu'
 import BannerMain from './components/BannerMain'
 import Carousel from './components/Carousel'
 import PageDefault from './components/PageDefault'
