@@ -4,11 +4,11 @@ import './App.css'
 import Menu from './components/Menu'
 import BannerMain from './components/BannerMain'
 import Carousel from './components/Carousel'
+import PageDefault from './components/PageDefault'
 
 function App () {
   return (
-    <div style={{ background: '#141414' }}>
-      <Menu />
+    <PageDefault style={{ background: '#141414' }}>
       <BannerMain
         videoTitle={dados.categorias[0].videos[0].titulo}
         url={dados.categorias[0].videos[0].url}
@@ -20,7 +20,7 @@ function App () {
       <Carousel category={dados.categorias[3]} />
       <Carousel category={dados.categorias[4]} />
       <Carousel category={dados.categorias[5]} />
-    </div>
+    </PageDefault>
   )
 }
 
