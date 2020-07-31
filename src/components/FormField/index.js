@@ -1,76 +1,107 @@
 import React from 'react'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
 
-const FieldContainer = styled.label`
-  background-color: #53585d;
-  border-radius: 4px;
-  display: flex;
-  flex-flow: column-reverse;
-  margin-bottom: 1em;
+const FormFieldWrapper = styled.div`
   position: relative;
-  padding: 15px 8px;
-
-  &:focus {
-    border-bottom: 4px solid #2a7ae4;
+  textarea {
+    min-height: 150px;
   }
+  input[type='color'] {
+    padding-left: 56px;
+  }
+`
+
+const Label = styled.label``
+
+Label.Text = styled.span`
+  color: #e5e5e5;
+  height: 57px;
+  position: absolute;
+  top: 0;
+  left: 16px;
+
+  display: flex;
+  align-items: center;
+
+  transform-origin: 0% 0%;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+
+  transition: 0.1s ease-in-out;
 `
 
 const Input = styled.input`
   background: #53585d;
+  color: #f5f5f5;
+  display: block;
+  width: 100%;
+  height: 57px;
+  font-size: 18px;
+
+  outline: 0;
   border: 0;
-  outline: none;
-  min-width: 180px;
-  font-size: 16px;
-  transition: all 0.3s ease-out;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -webkit-appearance: none;
-  border-radius: 0;
-  &::placeholder {
-    color: transparent;
-  }
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid #53585d;
 
-  &:required:invalid + span {
-    color: red;
-  }
+  padding: 16px 16px;
+  margin-bottom: 45px;
 
-  &:focus:required:invalid {
-    border-bottom: 2px solid red;
-  }
+  resize: none;
+  border-radius: 4px;
+  transition: border-color 0.3s;
 
-  &:required:invalid + span:before {
-    content: '*';
+  &:focus {
+    border-bottom-color: var(--primary);
   }
-  &:focus + span,
-  &:not(:placeholder-shown) + span {
-    font-size: 13px;
-    margin-top: 0;
+  &:focus:not([type='color']) + ${Label.Text} {
+    transform: scale(0.6) translateY(-10px);
   }
-`
-
-const Label = styled.span`
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 8px;
-  margin-top: 13px;
-  transition: all 0.3s ease-out;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
+  ${({ value }) => {
+    const hasValue = value.length > 0
+    return (
+      hasValue &&
+      css`
+        &:not([type='color']) + ${Label.Text} {
+          transform: scale(0.6) translateY(-10px);
+        }
+      `
+    )
+  }}
 `
 
 function FormField ({ label, type, name, value, onChange }) {
+  const isTypeTextArea = type === 'textarea'
+  const tag = isTypeTextArea ? 'textarea' : 'input'
+
   return (
-    <FieldContainer>
-      <Input
-        value={value}
-        name={name}
-        onChange={onChange}
-        placeholder='Humbert'
-      />
-      <Label>{label}</Label>
-    </FieldContainer>
+    <FormFieldWrapper>
+      <Label>
+        <Input
+          as={tag}
+          type={type}
+          value={value}
+          name={name}
+          onChange={onChange}
+        />
+        <Label.Text>{label}:</Label.Text>
+      </Label>
+    </FormFieldWrapper>
   )
+}
+
+FormField.defaultProps = {
+  type: 'text',
+  value: ''
+}
+
+FormField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired
 }
 
 export default FormField

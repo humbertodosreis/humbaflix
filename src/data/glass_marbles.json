@@ -1,17 +1,13 @@
 {
   "categorias": [
     {
-      "titulo": "Front End",
+      "titulo": "Off-road",
       "link": "https://www.alura.com.br/formacao-front-end",
       "cor": "#6BD1FF",
-      "link_extra": {
-        "text": "Formação de Front End na Alura",
-        "url": "https://www.alura.com.br/cursos-online-front-end"
-      },
       "videos": [
         {
-          "titulo": "O que faz uma desenvolvedora front-end? #HipstersPontoTube",
-          "url": "https://www.youtube.com/watch?v=ZY3-MFxVdEw"
+          "titulo": "Jelle's Marble Runs: Sand Marble Rally 2018 - Race 1",
+          "url": "https://www.youtube.com/watch?v=_cBHmu_cNww"
         },
         {
           "titulo": "SEO com React",

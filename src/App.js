@@ -1,5 +1,5 @@
 import React from 'react'
-import dados from './data/dados_iniciais.json'
+import dados from './data/glass_marbles.json'
 import './App.css'
 import BannerMain from './components/BannerMain'
 import Carousel from './components/Carousel'
